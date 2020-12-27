@@ -17,4 +17,5 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 EXPOSE 11130
 ENV ASPNETCORE_URLS=http://*:11130
+ENV APPINSIGHTS_INSTRUMENTATIONKEY=80aeb38e-0302-454d-897e-26da7df1d0a5
 ENTRYPOINT ["dotnet", "HelloWorld.dll"]
