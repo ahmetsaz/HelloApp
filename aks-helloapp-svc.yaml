@@ -1,0 +1,75 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: helloworld-svc
+  name: helloworld-svc
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: helloworld-svc
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        run: helloworld-svc
+    spec:
+      containers:
+      - image: docker.io/ahmetsaz/helloapp:latest
+        env:
+          - name: APPINSIGHTS_INSTRUMENTATIONKEY
+            valueFrom:
+              secretKeyRef:
+                name: appinsightskey
+                key: instrumentation-key
+        imagePullPolicy: "Always"
+        name: helloworld-svc    
+        ports:
+        - containerPort: 11130
+        resources:
+            requests:
+              cpu: "50m"
+              memory: "300Mi"
+            limits: 
+              memory: "300Mi"
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+--- 
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    run: helloworld-svc
+  name: helloworld-svc
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 11130
+  selector:
+    run: helloworld-svc
+  sessionAffinity: None
+  type: LoadBalancer
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: helloworld-svc
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: helloworld-svc
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Pods
+    pods:
+      metricName: rps
+      targetAverageValue: 1
