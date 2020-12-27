@@ -9,6 +9,17 @@ To run the Docker Image:
 
 - I used Azure for Kubernetes cluster environment(Azure Kubernetes Service)
 - I used ansible to create the Azure kubernetes service. You can check the aks_ansible.yml file. If you want to delete the resource, you can check the aks_ansible_destroy.yml file.
+- To use the aks ansible.yml file, you need to login azure with az login. Then you need to create a service principal with az name sp create-for-rbac --name ServicePrincipalName.
+- az name sp create-for-rbac --name ServicePrincipalName command output:
+```javascript
+{
+  "appId": "myAppId",
+  "displayName": "myDisplayName",
+  "name": "http://myName",
+  "password": null,
+  "tenant": "myTenantId"
+}
+```
 
 To run the Ansbile:
  - ansible-playbook aks_ansible.yml (create aks cluster)
