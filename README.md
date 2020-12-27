@@ -4,8 +4,13 @@
 
 To run the Docker Image:
 
- docker pull ahmetsaz/helloapp:latest
- docker run -p 11130:11130 ahmetsaz/helloapp:latest
+  - docker pull ahmetsaz/helloapp:latest
+  - docker run -p 11130:11130 ahmetsaz/helloapp:latest
 
-I used Azure for Kubernetes cluster environment
+- I used Azure for Kubernetes cluster environment(Azure Kubernetes Service)
+- I used ansible to create the Azure kubernetes service. You can check the aks_ansible.yml file. If you want to delete the resource, you can check the aks_ansible_destroy.yml file.
+
+To run the Ansbile:
+ - ansible-playbook aks_ansible.yml (create aks cluster)
+ - ansible-playbook aks_ansible_destroy.yml (destroy aks cluster)
 
