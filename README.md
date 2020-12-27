@@ -20,6 +20,20 @@ To run the Docker Image:
   "tenant": "myTenantId"
 }
 ```
+- Edit the aks_ansible.yml file according to the service principal output:
+
+```javascript
+{
+  resource_group: Rg-k8s
+    location: westeurope
+    aks_name: pt-cluster
+    username: azureuser
+    ssh_key: "your ssh key"
+    client_id: "your appId"
+    client_secret: "your password"
+    aks_version: 1.16.10
+}
+```
 
 To run the Ansbile:
  - ansible-playbook aks_ansible.yml (create aks cluster)
