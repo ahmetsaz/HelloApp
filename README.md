@@ -39,3 +39,4 @@ To run the Ansbile:
  - ansible-playbook aks_ansible.yml (create aks cluster)
  - ansible-playbook aks_ansible_destroy.yml (destroy aks cluster)
 
+- I used https://github.com/Azure/azure-k8s-metrics-adapter/tree/master/samples/request-per-second for pod auto scale
