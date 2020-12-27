@@ -24,7 +24,7 @@ To run the Docker Image:
 
 ```javascript
 {
-  resource_group: Rg-k8s
+    resource_group: Rg-k8s
     location: westeurope
     aks_name: pt-cluster
     username: azureuser
