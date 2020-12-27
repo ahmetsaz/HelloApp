@@ -42,3 +42,6 @@
 
   For pod auto scale: 
   - I used https://github.com/Azure/azure-k8s-metrics-adapter/tree/master/samples/request-per-second
+  - You can deploy the Helloapp application on kubernetes using aks-helloapp-svc.yml file
+  
+  
